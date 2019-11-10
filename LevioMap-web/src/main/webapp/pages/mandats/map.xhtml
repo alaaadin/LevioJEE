@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+       xmlns:p="http://primefaces.org/ui"> 
+<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyA2UR9dAvDKXHmgChCO1dVX1rkhG8otB-A
+"></script>
+<h:head>
+
+</h:head> 
+<body> 
+<h:form>  
+    <p:gmap id="gmap" center="36.890257,30.707417" zoom="5" type="HYBRID" model="#{addMarkers.advancedModel}" style="width:100%;height:400px">
+ 
+        <p:ajax event="overlaySelect" listener="#{addMarkers.onMarkerSelect}" />
+ 
+        <p:gmapInfoWindow id="infoWindow">
+            <p:outputPanel style="text-align: center; display: block; margin: auto">
+ 
+                    <p:graphicImage name="#{addMarkers.marker.data}" height="32" width="32s"  style="width: 32px; height: 32px;"/>
+                    <br />
+                    <h:outputText value="#{addMarkers.marker.title}" />
+                    <a href="../../organigramme.jsf"><br></br>Organigramme</a>
+ 
+            </p:outputPanel>
+        </p:gmapInfoWindow>
+    </p:gmap>
+ 
+  <p:outputPanel style="display:none">
+     <p:graphicImage name="#{addMarkers.marker.title}.jpg" alt="rsz_2logo" />
+               	
+ 
+    </p:outputPanel>
+</h:form>
+</body> 
+</html>

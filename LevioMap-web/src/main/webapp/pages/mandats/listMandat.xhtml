@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+
+</h:head> 
+
+<body> 
+<center><h1><u><h:outputText value="liste des mandats" /></u></h1></center>
+<center>
+<form>
+<h:panelGrid>
+<p:dataTable var="mandat" value="#{mandatBean.mandats}">
+    <p:column headerText="Id" sortBy="#{mandat.idMandat}" filterBy="#{mandat.idMandat}">
+        <h:outputText value="#{mandat.idMandat}" />
+    </p:column>
+    
+    <p:column headerText="Ressource" sortBy="#{mandat.ressource.nom}" filterBy="#{mandat.ressource.nom}">
+        <h:outputText value="#{mandat.ressource.nom}" />
+    </p:column>
+    
+    <p:column headerText="Projet" sortBy="#{mandat.projet.nomProjet}" filterBy="#{mandat.projet.nomProjet}">
+        <h:outputText value="#{mandat.projet.nomProjet}" />
+    </p:column>
+ 
+    <p:column headerText="date debut" sortBy="#{mandat.dateDebut}" filterBy="#{mandat.dateDebut}">
+        <h:outputText value="#{mandat.dateDebut}" />
+    </p:column>
+ 
+    <p:column headerText="date fin" sortBy="#{mandat.dateFin}" filterBy="#{mandat.dateFin}">
+        <h:outputText value="#{mandat.dateFin}" />
+    </p:column>
+    
+     <p:column headerText="frais du mandat">
+        <h:outputText value="#{mandat.frais}" />
+    </p:column>
+   
+    <p:column>
+			<f:facet name="header">
+				<h:outputText value="Supprimer mandat"/>
+			</f:facet>
+			<h:form id="formemp">
+				<h:commandButton action="#{mandatBean.delete(mandat.idMandat)}" value="supprimer"  onclick="alert('Mandat supprimé !') " /> 
+			 
+				 
+			</h:form>
+			
+		</p:column>
+</p:dataTable>
+
+
+
+
+<center>
+  <p:commandButton actionListener="#{mandatBean.calculFrais()}"  value="calculer frais de la mandat"/>
+</center>
+    
+    
+  </h:panelGrid>
+</form>
+
+
+</center>
+</body> 
+</html>

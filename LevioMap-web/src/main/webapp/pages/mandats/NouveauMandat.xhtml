@@ -1,0 +1,67 @@
+<repositories>
+		
+		<repository>
+			<!-- PrimeFaces -->
+			<id>prime-repo</id>  
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+	<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+
+    <h:outputStylesheet library="primefaces" name="jquery/ui/jquery-ui.css" />
+
+
+</h:head>
+ 
+<body> 
+<center><h1><u><h:outputText value="Nouveau Mandat" /></u></h1></center>
+<center>
+<h:form  >
+<h:panelGrid >
+
+  <h2> <h:outputText value="Date Debut:" widgetVar="datedeb"/></h2>
+   <p:calendar value="#{mandatBean.dateDebut}" pattern="yyyy-MM-dd" />
+   
+  <h2> <h:outputText value="Date Fin:" /></h2>
+   <p:calendar value="#{mandatBean.dateFin}" pattern="yyyy-MM-dd" widgetVar="datefin"/>
+   
+   
+   <h2>  <h:outputText value="liste des ressources" /></h2>
+   
+   <h:selectOneMenu id="menu" var="mand" value="#{mandatBean.selectRessource.idRessource}" >
+      
+      <f:selectItem itemValue ="#{mandatBean.selectRessource.idRessource}" itemLabel="#{mandatBean.selectRessource.nom}"/>
+      <f:selectItems value="#{mandatBean.ressources}" var="res" itemValue="#{res.idRessource}" itemLabel="#{mandatBean.selectRessource.nom}"/>
+      
+   </h:selectOneMenu>
+   
+   
+  
+ <h2>  <h:outputText value="liste des projets" /></h2>
+   
+   <h:selectOneMenu id="menu2" value="#{mandatBean.selectedProjet.idProjet}" >
+      
+      <f:selectItem itemValue ="#{mandatBean.selectedProjet.idProjet}" itemLabel="#{mandatBean.selectedProjet.nomProjet}"/>
+      <f:selectItems value="#{mandatBean.projets}" var="proj" itemValue="#{proj.idProjet}" itemLabel="#{mandatBean.selectedProjet.nomProjet}"/>
+      
+   </h:selectOneMenu>
+   
+     <h:commandButton value="Assigner Ressource"  onclick="alert('Ressource assigné à un projet et Mandat crée !') " >
+         <f:param name="action" value="#{mandatBean.ajoutMandat(mandatBean.selectedProjet.idProjet,mandatBean.selectRessource.idRessource,mandatBean.dateFin,mandatBean.dateDebut)}"/>
+     </h:commandButton>
+    
+     
+</h:panelGrid>
+</h:form>
+</center>
+</body> 
+</html>
